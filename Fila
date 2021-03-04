@@ -1,0 +1,167 @@
+Algoritmo "SA4 - Atividade 2 - Fila"
+// Disciplina   : [Linguagem e Lógica de Programação]
+// Professor   : Maransatto
+// Descrição   : fila
+// Autor(a)    : Cristiano Zanguetin Fantin
+// Data atual  : 03/03/2021
+Var
+   // Seção de Declarações das variáveis
+   fila: vetor[0..24] de caractere
+   loc, info,fila_vazia:caracter
+   operacao,indice, qt_fila,qte_fila: inteiro
+   primeiro, ultimo,ultimo_item: inteiro
+
+//*************************************************************************//
+
+procedimento menu()
+inicio
+   enquanto operacao <> "6" faca
+      escreval()
+      escreval("------------MENU-------------")
+      escreval("Opção: 1 - Inserir")
+      escreval("Opção: 2 - Remover")
+      escreval("Opção: 3 - Limpar")
+      escreval("Opção: 4 - Listar")
+      escreval("Opção: 5 - Verificar se vazio")
+      escreval("Opção: 6 - Sair")
+      escreval()
+      escreval("Digite a opção desejada:")
+      leia (operacao)
+      se operacao = 1 então
+         limpatela
+         inserir()
+      fimse
+
+      se operacao = 2 então
+         limpatela
+         remover()
+      fimse
+
+      se operacao = 3 então
+         limpatela
+         limpar()
+      fimse
+
+      se operacao = 4 então
+         limpatela
+         listar()
+      fimse
+
+      se operacao = 5 entao
+         limpatela
+         vazio()
+      fimse
+
+      se operacao = 6 então
+         limpatela
+         escreval("Sistema finalizado!")
+fimalgoritmo
+fimse
+fimenquanto
+fimprocedimento
+
+//*************************************************************************//
+procedimento inserir()
+inicio
+   escreva("     -----------Você está na tela de inclusão--------------")
+   escreval()
+   para indice de 0 ate 24 faça
+      se (fila[indice]="") então
+         escreva("Digite o Nome:")
+         leia(fila[indice])
+         se (fila[1])="" entao
+            primeiro :=(indice)
+         fimse
+         ultimo :=(indice)
+         menu()
+         limpatela
+      fimse
+   fimpara
+   escreva("Não é possível inserir mais registros!")
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento vazio()
+inicio
+   fila_vazia:= ""
+   qte_fila:=0
+   escreval()
+   para indice de primeiro ate ultimo faca
+      se fila[indice] <> "" entao
+         qte_fila:=qte_fila+1
+         fila_vazia:="1"
+      senao
+         fila_vazia:="0"
+      fimse
+   fimpara
+   se fila_vazia = "0" entao
+      escreval("Não há nenhum item na fila!")
+   senão
+      escreval("ATENÇÃO! Há pelo menos:", qte_fila, " registro na fila!")
+   fimse
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento listar()
+inicio
+   qt_fila:= 0
+   escreval()
+   para indice de primeiro ate ultimo faca
+      se fila[indice] <> "" entao
+         escreval(fila[indice])
+         qt_fila:=qt_fila+1
+
+      fimse
+   fimpara
+   se qt_fila <> 0 entao
+      escreval(qt_fila," registro na fila!")
+   senao
+      escreval("Não há nenhum item na fila!")
+   fimse
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento remover()
+inicio
+   indice:=0
+   se fila[primeiro]<>"" entao
+      escreval("Registro (",fila[primeiro], ") foi removido!")
+      fila[primeiro]:=""
+      para indice de primeiro até ultimo faca
+         se indice < ultimo entao
+            fila[indice]:=fila[indice+1]
+            indice := indice+1
+         fimse
+      fimpara
+      fila[indice]:=""
+   senao
+      escreval("Atenção: Não há registro em fila para remoção!")
+   fimse
+   indice:=0
+   menu()
+fimenquanto
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento limpar()
+inicio
+   para indice de primeiro ate ultimo faca
+      se fila[indice]<>"" entao
+         fila[indice]:=""
+      senao
+         escreval("Atenção: Não há registro em fila para remoção!")
+      fimse
+   fimpara
+   escreval("Fila esvaziada com sucesso!")
+   menu()
+fimprocedimento
+
+//*************************************************************************//
+
+Inicio
+   menu()
+Fimalgoritmo
