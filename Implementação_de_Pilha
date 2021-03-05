@@ -1,0 +1,178 @@
+Algoritmo "SA4 - Atividade 2 - pilha"
+// Disciplina   : [Linguagem e Lógica de Programação]
+// Professor   : Maransatto
+// Descrição   : pilha
+// Autor(a)    : Cristiano Zanguetin Fantin
+// Data atual  : 03/03/2021
+Var
+   // Seção de Declarações das variáveis
+   pilha: vetor[0..19] de caractere
+   loc, info,pilha_vazia:caracter
+   operacao,indice, qt_pilha,qte_pilha: inteiro
+   primeiro, ultimo,ultimo_item: inteiro
+
+   //*************************************************************************//
+
+procedimento menu()
+inicio
+   enquanto operacao <> "6"   faca
+      escreval()
+      escreval("------------MENU DE COMANDOS-------------")
+      escreval("Opção: 1 - Empilhar")
+      escreval("Opção: 2 - Desempilhar")
+      escreval("Opção: 3 - Limpar")
+      escreval("Opção: 4 - Listar")
+      escreval("Opção: 5 - Verificar se vazio")
+      escreval("Opção: 6 - Sair")
+      escreval()
+      escreval("Digite a opção desejada:")
+      leia (operacao)
+      se operacao = 1 então
+         limpatela
+         empilhar()
+      fimse
+
+      se operacao = 2 então
+         limpatela
+         desempilhar()
+      fimse
+
+      se operacao = 3 então
+         limpatela
+         limpar()
+      fimse
+
+      se operacao = 4 então
+         limpatela
+         listar()
+      fimse
+
+      se operacao = 5 entao
+         limpatela
+         vazio()
+      fimse
+
+      se operacao = 6 então
+         limpatela
+         escreval("Sistema de implementação de pilha finalizado!")
+fimalgoritmo
+fimse
+fimenquanto
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento empilhar()
+inicio
+   escreva("     -----------Você está na tela de empilhamento--------------")
+   escreval()
+   para indice de 0 ate 19 faça
+      se (pilha[indice]="") então
+         escreva("Digite um registro: ")
+         leia(pilha[indice])
+         se (pilha[1])="" entao
+            primeiro :=(indice)
+         fimse
+         ultimo :=(indice)
+         menu()
+         limpatela
+      fimse
+   fimpara
+   escreva("Não é possível empilhar mais registros!")
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento vazio()
+inicio
+   pilha_vazia:= ""
+   qte_pilha:=0
+   escreval()
+   para indice de primeiro ate ultimo faca
+      se pilha[indice] <> "" entao
+         qte_pilha:=qte_pilha+1
+         pilha_vazia:="1"
+      senao
+         pilha_vazia:="0"
+      fimse
+   fimpara
+   se pilha_vazia = "0" entao
+      escreval("Vazio-Verdadeiro")
+   senão
+      escreval("Vazio Falso ainda há", qte_pilha, " registro empilhados!")
+   fimse
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento listar()
+inicio
+   qt_pilha:= 0
+   escreval()
+   para indice de primeiro ate ultimo faca
+      se pilha[indice] <> "" entao
+         escreval(pilha[indice])
+         qt_pilha:=qt_pilha+1
+
+      fimse
+   fimpara
+   se qt_pilha <> 0 entao
+      escreval(qt_pilha," registro na pilha!")
+   senao
+      escreval("Não há nenhum item empilhado!")
+   fimse
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento desempilhar()
+inicio
+
+   //tratativa-caso o usuário escolha a opcao 2 assim que iniciar o programa
+   se pilha[0]=""  entao
+      escreval("Atenção: Não há registro em pilha para remoção!")
+      menu()
+   fimse
+
+   se ultimo=-1  entao
+      escreval("Atenção: Não há registro em pilha para remoção!")
+      menu()
+   fimse
+
+   se pilha[ultimo]<>"" entao
+      escreval("Registro (",pilha[ultimo], ") foi desempilhado!")
+      pilha[ultimo]:=""
+      ultimo:=ultimo-1
+   fimse
+
+   menu()
+
+fimprocedimento
+
+//*************************************************************************//
+
+procedimento limpar()
+inicio
+
+   se ultimo=-1 entao
+      escreval("Atenção: A pilha já está vazia!")
+      menu()
+   fimse
+
+
+   para indice de primeiro ate ultimo faca
+      se pilha[indice]<>"" entao
+         pilha[indice]:=""
+      senao
+         escreval("Atenção: Não há registro em pilha para remoção!")
+      fimse
+   fimpara
+   //   escreval("Pilha esvaziada com sucesso!")
+   menu()
+fimprocedimento
+
+//*************************************************************************//
+
+Inicio
+   menu()
+Fimalgoritmo
