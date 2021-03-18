@@ -1,217 +1,96 @@
-Algoritmo "SA5 – Atividade 2"
-// Disciplina   : [Linguagem e Lógica de Programação]
-// Professor   : Maransatto
-// Descrição   : Recursividade Algoritmo de Ordenação - Mergesort
+Algoritmo "Mergesort"
+// Disciplina  : Linguagem e Lógica de Programação
+// Professor   : Fernando Maransatto
+// Descrição   : Desenvolvimento do algoritmo Mergesort
 // Autor(a)    : Cristiano Zanguetin Fantin
-// Data atual  : 12/03/2021
-Var
-   // Seção de Declarações das variáveis
-   fila: vetor[1..100] de inteiro
-   indice,reg_total,qt_loop,loop_total, atual,proximo:inteiro
-   operacao, incremento,primeiro,qte_fila,ultimo,qt_fila :inteiro
-   fila_vazia:caracter
+// Data atual  : 17/03/2021
 
-   //*************************************************************************//
-
-procedimento menu()
-inicio
-
-   enquanto operacao <> "6" faca
-      escreval()
-      escreval("------------MENU-------------")
-      escreval("Opção: 1 - Preenchimento Aleatorio")
-      escreval("Opção: 2 - Listar")
-      escreval("Opção: 3 - Ordem Crescente")
-      escreval("Opção: 4 - Ordem decrescente")
-      escreval("Opção: 5 - Apagar registro")
-      escreval("Opção: 6 - Sair")
-      escreval()
-      escreval("Digite a opção desejada:")
-      leia (operacao)
-      se operacao = 1 então
-         limpatela
-         preencher()
-      fimse
-
-      se operacao = 2 então
-         limpatela
-         listar()
-      fimse
-
-      se operacao = 3 então
-         limpatela
-         crescente()
-      fimse
-
-      se operacao = 4 então
-         limpatela
-         decrescente()
-      fimse
-
-      se operacao = 5 então
-         limpatela
-         limpar()
-      fimse
-
-      se operacao = 6 então
-         limpatela
-         escreval("Sistema finalizado!")
-fimalgoritmo
-fimse
-fimenquanto
-fimprocedimento
-
-//*************************************************************************//
-
-procedimento preencher()
-inicio
-
-   escreval()
-   escreval()
-
-   indice:=1
-   incremento:=-1
-
-   primeiro :=(indice)
-   enquanto (indice <=100) faça
-      incremento :=incremento +2
-      fila[(indice)]:= incremento
-      indice:=indice+2
-   fimenquanto
-
-   se  indice = 101 então
-      fila[(indice-1)]:=100
-   fimse
-
-   indice:=2
-   incremento:=98
-
-   enquanto (indice <=98) faça
-      incremento :=incremento -2
-      fila[(indice)]:= incremento
-      indice:=indice+2
-   fimenquanto
-
-   fila[(98)]:=98
-
-   ultimo :=(indice)
-   escreva("")
-   escreva("Preenchimento aleatório concluido!")
-   escreval("")
-   escreval("")
-fimprocedimento
-//*************************************************************************//
-
-procedimento decrescente()
-
-inicio
-
-   indice:=0
-   reg_total:=100
-   qt_loop:= (reg_total -1)
-   loop_total:=0
-   enquanto loop_total < qt_loop faca
-      limpatela
-      escreval("Classificando em ordem decrescente.....")
-      escreval(loop_total+2, " % concluido!")
-
-
-      enquanto indice < qt_loop faca
-         atual:= fila[reg_total]
-         proximo:=fila[(reg_total-1)]
-         se atual > proximo entao
-            fila[(reg_total-1)]:=atual
-            fila[reg_total]:=proximo
-         senão
-            fila[(reg_total-1)]:=proximo
-         fimse
-         reg_total:=reg_total-1
-         indice:= indice+1
-      fimenquanto
-      indice:=0
-      reg_total:=100
-      loop_total:=(loop_total+1)
-   fimenquanto
-   escreval("---------------------------------------")
-   escreval("Tempo de processamento:",(loop_total+1)/12.5," segundos")
-fimprocedimento
-
-//*************************************************************************//
-
-procedimento crescente()
-
-inicio
-
-   indice:=1
-   reg_total:=100
-   qt_loop:= 100
-   loop_total:=0
-   enquanto loop_total < qt_loop faca
-      limpatela
-      escreval("Classificando em ordem crescente.....")
-      escreval(loop_total+1, "% concluido!")
-
-
-      enquanto indice < qt_loop faca
-         atual:= fila[indice]
-         proximo:=fila[(indice+1)]
-
-         se atual > proximo entao
-            fila[(indice)]:=proximo
-            fila[indice+1]:=atual
-         senão
-            fila[(indice+1)]:=proximo
-         fimse
-
-         reg_total:=reg_total-1
-         indice:= indice+1
-
-      fimenquanto
-      indice:=1
-      reg_total:=100
-
-      loop_total:=(loop_total+1)
-   fimenquanto
-   escreval("---------------------------------------")
-   escreval("Tempo de processamento:",(loop_total/12.5)," segundos!")
-fimprocedimento
-
-//*************************************************************************//
-
-procedimento listar()
-inicio
-   qt_fila:= 0
-   escreval()
-   para indice de 1 ate 100 faca
-      se fila[indice] <> 0 entao
-         escreval(fila[indice])
-         qt_fila:=qt_fila+1
-
-      fimse
-   fimpara
-   se qt_fila <> 0 entao
-      escreval(qt_fila," registro na fila!")
-   senao
-      escreval("Não há nenhum item na fila!")
-   fimse
-fimprocedimento
-
-//*************************************************************************//
-
-procedimento limpar()
 var
-   indice:inteiro
+   // Seção de Declarações das variáveis
+   vetor_inicial: vetor [1..7] de inteiro
+   x,inicial,final:inteiro
 
 inicio
-   para indice de 1 ate 100 faca
-      fila[indice]:=0
-   fimpara
-   escreval("Registro apagados!")
-   menu()
+   // Seção de Comandos, procedimento, funções, operadores, etc...
+
+   vetor_inicial[1]:=22
+   escreval(vetor_inicial[1])
+   vetor_inicial[2]:=12
+   escreval(vetor_inicial[2])
+   vetor_inicial[3]:=9
+   escreval(vetor_inicial[3])
+   vetor_inicial[4]:=42
+   escreval(vetor_inicial[4])
+   vetor_inicial[5]:=61
+   escreval(vetor_inicial[5])
+   vetor_inicial[6]:=23
+   escreval( vetor_inicial[6])
+   vetor_inicial[7]:=13
+   escreval(vetor_inicial[7])
+   escreval()
+   escreval("--------------------------------------")
+   escreval()
+
+   inicial:=1
+   final:=7
+
+
+Procedimento Merge_Sort(inicial, final: inteiro )
+var
+   meio:inteiro
+inicio
+   se (inicial <  final) entao
+      meio:=(inicial + final) div 2
+      Merge_Sort (inicial, meio)
+      Merge_Sort (meio+1, final)
+      Merge (inicial, meio, final)
+   fimse
 fimprocedimento
 
-//*************************************************************************//
+//***********************************************************************
 
-Inicio
-   menu()
-Fimalgoritmo
+procedimento Merge (inicial, meio, final: inteiro )
+var
+   h,i,j,k:inteiro
+   vetor_final: vetor [1..7] de inteiro
+inicio
+
+   h:=inicial;
+   i:=inicial;
+   j:=meio + 1;
+   enquanto (h<=meio) e (j<=final) faca
+
+      se vetor_inicial[h] <=    vetor_inicial[j] entao
+         vetor_final[i]:=   vetor_inicial[h];
+         h:= h + 1;
+      senao
+         vetor_final[i]:=   vetor_inicial[j];
+         j:= j + 1;
+      fimse
+      i:= i + 1;
+   fimenquanto
+   se h > meio entao
+      Para k de j ate final faca
+         vetor_final[i]:=    vetor_inicial[k];
+         i:= i + 1;
+      fimpara
+   senao
+      Para k de h ate meio faca
+         vetor_final[i]:=   vetor_inicial[k];
+         i:= i + 1;
+      fimpara
+   fimse
+   para k de inicial ate final faca
+      vetor_inicial[k]:=vetor_final[k];
+   fimpara
+fimprocedimento
+
+
+//***********************************************************************
+
+Merge_sort(inicial, final )
+
+para x de 1 ate 7 faca
+   escreva (   vetor_inicial[x])
+fimpara
+fimalgoritmo
